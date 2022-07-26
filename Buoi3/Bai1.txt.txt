@@ -1,0 +1,87 @@
+import java.util.Scanner;
+
+public class Bai1 {
+    public static double tbc(int a[]){
+        double s = 0;
+        int d = 0;
+        for(int i=1;i<a.length;i+=2){
+            if(a[i]%2 == 1){
+                s+=a[i];
+                d++;
+            }
+        }
+        s = (double) s/d;
+        return  s;
+    }
+    public static void tim(int a[]){
+        int min = a[0];
+        for(int i=0;i<a.length;i++){
+            if(a[i]<min) min = a[i];
+        }
+        for(int i=0;i<a.length;i++){
+            if(a[i] == min) System.out.print(i+1 +" ");
+        }
+    }
+    public static boolean scp(int n){
+        int x = (int) Math.sqrt(n);
+        return x*x == n;
+    }
+    public static void htscp(int a[]){
+        for(int i=0;i<a.length;i++) {
+            if (scp(a[i])) {
+                System.out.print(a[i] + " ");
+            }
+        }
+    }
+    public static int ktnt(int n){
+        if(n<2) return 0;
+        for(int i=2;i<=Math.sqrt(n);i++){
+            if(n%i==0) return 0;
+        }
+        return 1;
+    }
+    public static void htsnt(int a[]){
+        for(int i=0;i<a.length;i++){
+            if(ktnt(a[i])==1) System.out.print(a[i]+" ");
+        }
+    }
+    public static int[] sx(int a[]){
+        for(int i=0;i<a.length-1;i++){
+            for(int j=i+1;j<a.length;j++){
+                if(a[i]>a[j]){
+                    int tmp = a[j];
+                    a[j] = a[i];
+                    a[i]= tmp;
+                }
+            }
+        }
+        return a;
+    }
+    public static void main(String[] args) {
+        Scanner sc =new Scanner(System.in);
+        int n;
+        System.out.print("Nhap so phan tu cua mang  n = ");
+        n = sc.nextInt();
+        int a[] = new int[n];
+        for(int i=0;i<n;i++){
+            System.out.printf("a[%d] = ",i);
+            a[i] = sc.nextInt();
+        }
+        System.out.printf("Trung binh cong cua cac so le o vi tri chan la: %.3f",tbc(a));
+        System.out.println("");
+        System.out.print("Vi tri so nho nhat trong mang la: ");
+        tim(a);
+        System.out.println("");
+        System.out.print("Cac so chinh phuong co trong mang la: ");
+        htscp(a);
+        System.out.println("");
+        System.out.print("Cac so nguyen to co trong mang la: ");
+        htsnt(a);
+        System.out.println("");
+        System.out.print("Mang da sap xep la: ");
+        sx(a);
+        for(int i=0;i<a.length;i++){
+            System.out.print(a[i]+" ");
+        }
+    }
+}
